@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an MVP project for the COVID hackathon project, built on React.
+
+Here are some useful script from the standard React readme setup:
 
 ## Available Scripts
 
