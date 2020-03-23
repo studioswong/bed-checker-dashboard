@@ -109,7 +109,7 @@ const MapWrapper = withScriptjs(
     { props.hospitals.map(hospital => {
         return (
             <MarkerWithLabel
-                position={hospital.position}
+                position={{latitude: hospital.latitude, longitude: hospital.longitude}}
                 labelAnchor={new window.google.maps.Point(0, 0)}
                 labelStyle={{backgroundColor: "white", fontSize: "12px", padding: "16px"}}
                 >
@@ -177,7 +177,7 @@ export const Maps = () => {
             <div className="col">
               <Card className="shadow border-0">
                 <MapWrapper
-                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdCiFw2sgi_r39_oLVOlv5UlkMMvD_tWc"
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key={*APIKEY}"
                   loadingElement={<div style={{ height: `100%` }} />}
                   containerElement={
                     <div
@@ -189,7 +189,7 @@ export const Maps = () => {
                   mapElement={
                     <div style={{ height: `100%`, borderRadius: "inherit" }} />
                   }
-                  hospitals={hospitals}
+                  hospitals={hospitalsData}
                 />
               </Card>
             </div>
