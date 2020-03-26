@@ -22,11 +22,29 @@ import {
 } from "reactstrap";
 
 const calculateStatus = ((availableBeds, totalBeds) => {
-  const capacity = Math.round((1-(availableBeds / totalBeds))*100)
+  let status = 'unknown';
+  let dot = 'bg-success'
+  // const capacity = Math.round((1-(availableBeds / totalBeds))*100);
+  const capacity = calculateCapacity(availableBeds, totalBeds);
+  if (capacity < 5) {
+    status = 'No Capacity'
+    dot = 'bg-danger'
+  } else if (capacity >= 5 && capacity < 15) {
+    status = 'very limited capacity'
+    dot = 'bg-danger'
+  } else if (capacity >= 15 && capacity <30) {
+    status = 'limited capacity'
+    dot = 'bg-success'
+  } else {
+    status = 'moderate capacity'
+    dot = 'bg-info'
+  }
+
+  return { status, dot };
 })
 
 const calculateCapacity = ((availableBeds, totalBeds) => {
-  const capacity = Math.round((1-(availableBeds / totalBeds))*100);
+  const capacity = Math.round((availableBeds/totalBeds)*100);
   if(Number.isInteger(capacity)) {
     return capacity
   } else {
@@ -34,7 +52,10 @@ const calculateCapacity = ((availableBeds, totalBeds) => {
   }
 })
 
-const HospitalRow = (props => (
+const HospitalRow = (props => {
+  const statusInfo = calculateStatus(props.hospital.availableBeds, props.hospital.totalBeds)
+  const capacity = calculateCapacity(props.hospital.availableBeds, props.hospital.totalBeds)
+  return(
   <tr>
     <th scope="row">
       <Media className="align-items-center">
@@ -46,96 +67,21 @@ const HospitalRow = (props => (
       </Media>
     </th>
     <td>{props.hospital.availableBeds} Beds</td>
+    <td>{props.hospital.totalBeds} Beds</td>
     <td>
       <Badge color="" className="badge-dot mr-4">
-        <i className="bg-warning" />
-        pending
+        <i className={statusInfo.dot} />
+        {statusInfo.status}
       </Badge>
     </td>
     <td>
-      <div className="avatar-group">
-        <a
-          className="avatar avatar-sm"
-          href="#pablo"
-          id="tooltip742438047"
-          onClick={e => e.preventDefault()}
-        >
-          <img
-            alt="..."
-            className="rounded-circle"
-            src="assets/img/theme/team-1-800x800.jpg"
-          />
-        </a>
-        <UncontrolledTooltip
-          delay={0}
-          target="tooltip742438047"
-        >
-          Ryan Tompson
-        </UncontrolledTooltip>
-        <a
-          className="avatar avatar-sm"
-          href="#pablo"
-          id="tooltip941738690"
-          onClick={e => e.preventDefault()}
-        >
-          <img
-            alt="..."
-            className="rounded-circle"
-            src="/assets/img/theme/team-2-800x800.jpg"
-          />
-        </a>
-        <UncontrolledTooltip
-          delay={0}
-          target="tooltip941738690"
-        >
-          Romina Hadid
-        </UncontrolledTooltip>
-        <a
-          className="avatar avatar-sm"
-          href="#pablo"
-          id="tooltip804044742"
-          onClick={e => e.preventDefault()}
-        >
-          <img
-            alt="..."
-            className="rounded-circle"
-            src="assets/img/theme/team-3-800x800.jpg"
-          />
-        </a>
-        <UncontrolledTooltip
-          delay={0}
-          target="tooltip804044742"
-        >
-          Alexander Smith
-        </UncontrolledTooltip>
-        <a
-          className="avatar avatar-sm"
-          href="#pablo"
-          id="tooltip996637554"
-          onClick={e => e.preventDefault()}
-        >
-          <img
-            alt="..."
-            className="rounded-circle"
-            src="assets/img/theme/team-4-800x800.jpg"
-          />
-        </a>
-        <UncontrolledTooltip
-          delay={0}
-          target="tooltip996637554"
-        >
-          Jessica Doe
-        </UncontrolledTooltip>
-      </div>
-    </td>
-    <td>
       <div className="d-flex align-items-center">
-        <span className="mr-2">{calculateCapacity(props.hospital.availableBeds, props.hospital.totalBeds)}%</span>
+        <span className="mr-2">{capacity}%</span>
         <div>
           <Progress
             max="100"
-            value={Math.round((1-(props.hospital.availableBeds / props.hospital.totalBeds))*100)}
-            barClassName="bg-danger"
+            value={capacity}
+            barClassName={statusInfo.dot}
           />
         </div>
       </div>
@@ -181,7 +127,8 @@ const HospitalRow = (props => (
       </UncontrolledDropdown>
     </td>
   </tr>
-));
+  )
+});
 
 const hospitals = [{
   name: 'St Thomas Hospital',
@@ -209,15 +156,14 @@ export default class HospitalTable extends React.Component {
                     <tr>
                       <th scope="col">Hospital</th>
                       <th scope="col">Avaliable Beds</th>
+                      <th scope="col">Total Beds</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Medical Staff</th>
-                      <th scope="col">Capacity</th>
+                      <th scope="col">Avaliable Capacity</th>
                       <th scope="col" />
                     </tr>
                   </thead>
                   <tbody>
                     {this.props.hospitals.map(hospital => <HospitalRow hospital={hospital}/>)}
-                    {/* <HospitalRow hospital={hospitals[0]}/> */}
                   </tbody>
                 </Table>
                 <CardFooter className="py-4">

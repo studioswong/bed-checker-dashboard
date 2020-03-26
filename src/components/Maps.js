@@ -3,10 +3,11 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
+  GoogleMapLoader,
   Marker
 } from "react-google-maps";
 import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
-import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
+// import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
 
@@ -19,32 +20,38 @@ import HospitalTable from "./HospitalTable"
 
 const hospitals = [{
     name: 'St Thomas Hospital',
-    position:{ lat: 51.498016, lng: -0.118011 },
+    latitude: 51.498016, 
+    longitude: -0.118011,
     avaliableBeds: 10,
     totalBeds: 100
 },{
     name: 'Homerton Hospital',
-    position:{ lat: 51.5500, lng: -0.0460 },
+    latitude: 51.5500, 
+    longitude: -0.0460,
     avaliableBeds: 20,
     totalBeds: 100
 },{
     name: 'Heart Hospital',
-    position:{ lat: 51.5359167, lng: -0.1191931 },
+    latitude: 51.5359167, 
+    longitude: -0.1191931,
     avaliableBeds: 40,
     totalBeds: 100
 },{
     name: 'London Bridge Hospital',
-    position:{ lat: 51.498729, lng: -0.1295554 },
+    latitude: 51.498729, 
+    longitude: -0.1295554,
     avaliableBeds: 50,
     totalBeds: 100
 },{
     name: 'Royal Free Hospital',
-    position:{ lat: 51.5350857, lng: -0.1404352 },
+    latitude: 51.5350857, 
+    longitude: -0.1404352,
     avaliableBeds: 70,
     totalBeds: 100
 },{
     name: 'St Marys Hospital',
-    position:{ lat: 51.5211303, lng: -0.1543007 },
+    latitude: 51.5211303, 
+    longitude: -0.1543007,
     avaliableBeds: 35,
     totalBeds: 100
 }]
@@ -58,66 +65,67 @@ const hospitals = [{
 const MapWrapper = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
-      defaultZoom={12}
-      defaultCenter={{ lat: 51.509865, lng: -0.118092 }}
-      defaultOptions={{
+    defaultZoom={12}
+    defaultCenter={{ lat: 51.509865, lng: -0.118092 }}
+    defaultOptions={{
         scrollwheel: false,
         styles: [
-          {
+        {
             featureType: "administrative",
             elementType: "labels.text.fill",
             stylers: [{ color: "#444444" }]
-          },
-          {
+        },
+        {
             featureType: "landscape",
             elementType: "all",
             stylers: [{ color: "#f2f2f2" }]
-          },
-          {
+        },
+        {
             featureType: "poi",
             elementType: "all",
             stylers: [{ visibility: "off" }]
-          },
-          {
+        },
+        {
             featureType: "road",
             elementType: "all",
             stylers: [{ saturation: -100 }, { lightness: 45 }]
-          },
-          {
+        },
+        {
             featureType: "road.highway",
             elementType: "all",
             stylers: [{ visibility: "simplified" }]
-          },
-          {
+        },
+        {
             featureType: "road.arterial",
             elementType: "labels.icon",
             stylers: [{ visibility: "off" }]
-          },
-          {
+        },
+        {
             featureType: "transit",
             elementType: "all",
             stylers: [{ visibility: "off" }]
-          },
-          {
+        },
+        {
             featureType: "water",
             elementType: "all",
             stylers: [{ color: "#5e72e4" }, { visibility: "on" }]
-          }
+        }
         ]
-      }}
+    }}
     >
     { props.hospitals.map(hospital => {
+        console.log('hospital', hospital);
         return (
             <MarkerWithLabel
-                position={{latitude: hospital.latitude, longitude: hospital.longitude}}
+                position={{lat: hospital.latitude, lng: hospital.longitude}}
+                // position={hospital.position}
                 labelAnchor={new window.google.maps.Point(0, 0)}
                 labelStyle={{backgroundColor: "white", fontSize: "12px", padding: "16px"}}
                 >
                 <div>{hospital.name} - {hospital.avaliableBeds} beds</div>
             </MarkerWithLabel>
         )
-    })
-    }
+    })}
     </GoogleMap>
   ))
 );
@@ -159,7 +167,7 @@ export const Maps = () => {
     `);
     let hospitalsData = [];
 
-    console.log(data);
+    console.log('data:', data);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
@@ -177,7 +185,7 @@ export const Maps = () => {
             <div className="col">
               <Card className="shadow border-0">
                 <MapWrapper
-                  googleMapURL="https://maps.googleapis.com/maps/api/js?key={*APIKEY}"
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdCiFw2sgi_r39_oLVOlv5UlkMMvD_tWc"
                   loadingElement={<div style={{ height: `100%` }} />}
                   containerElement={
                     <div

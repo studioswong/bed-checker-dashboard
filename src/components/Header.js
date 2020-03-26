@@ -81,7 +81,7 @@ class Header extends React.Component {
                             tag="h5"
                             className="text-uppercase text-muted mb-0"
                           >
-                            Total amount of doctors
+                            Overall Status
                           </CardTitle>
                           <span className="h2 font-weight-bold mb-0">924</span>
                         </div>
@@ -109,7 +109,7 @@ class Header extends React.Component {
                             tag="h5"
                             className="text-uppercase text-muted mb-0"
                           >
-                            Total amount of nurses
+                            Total Capacity
                           </CardTitle>
                           <span className="h2 font-weight-bold mb-0">
                             380
