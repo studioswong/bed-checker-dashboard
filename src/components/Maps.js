@@ -4,7 +4,8 @@ import {
   withGoogleMap,
   GoogleMap,
   GoogleMapLoader,
-  Marker
+  Marker,
+  InfoWindow
 } from "react-google-maps";
 import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
 // import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
@@ -55,12 +56,6 @@ const hospitals = [{
     avaliableBeds: 35,
     totalBeds: 100
 }]
-
-// Heart Hospital	        51,5359167	-0,1191931	
-// London Bridge Hospital	51,498729	-0,1295554
-// Royal Free Hospital	    51,5350857	-0,1404352
-// St. Thomas Hospital	    51,4965211	-0,1269322
-// St Mary's Hospital	    51,5211303	-0,1543007
 
 const MapWrapper = withScriptjs(
   withGoogleMap(props => (
@@ -124,11 +119,31 @@ const MapWrapper = withScriptjs(
                 >
                 <div>{hospital.name} - {hospital.avaliableBeds} beds</div>
             </MarkerWithLabel>
+            // <HospitalMarker hospital={hospital} />
         )
     })}
     </GoogleMap>
   ))
 );
+
+const HospitalMarker = (props) => {
+    const [ showInfoWindow, setShowInfoWindow ] = useState(false);
+    const { latitude, longitude, availableBeds, name } = props.hospital
+    useEffect(() => {
+        setShowInfoWindow(showInfoWindow);
+      }, [showInfoWindow]);
+
+    return(
+        <Marker position={{lat: latitude, lng: longitude}} 
+        onMouseOver={setShowInfoWindow(true)} onMouseOut={setShowInfoWindow(false)}>
+            {showInfoWindow && (
+                <InfoWindow>
+                    <h4>{name}</h4>
+                    <h4>{availableBeds}</h4>
+                </InfoWindow>)}
+        </Marker>
+    )
+}
 
 export const Maps = () => {
     // const [ hospitals, setHospitals ] = useState([]);
