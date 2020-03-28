@@ -18,44 +18,45 @@ import { Card, Container, Row } from "reactstrap";
 // core components
 import Header from "./Header";
 import HospitalTable from "./HospitalTable"
+import AddWardPage from "./AddWardPage"
 
-const hospitals = [{
-    name: 'St Thomas Hospital',
-    latitude: 51.498016, 
-    longitude: -0.118011,
-    avaliableBeds: 10,
-    totalBeds: 100
-},{
-    name: 'Homerton Hospital',
-    latitude: 51.5500, 
-    longitude: -0.0460,
-    avaliableBeds: 20,
-    totalBeds: 100
-},{
-    name: 'Heart Hospital',
-    latitude: 51.5359167, 
-    longitude: -0.1191931,
-    avaliableBeds: 40,
-    totalBeds: 100
-},{
-    name: 'London Bridge Hospital',
-    latitude: 51.498729, 
-    longitude: -0.1295554,
-    avaliableBeds: 50,
-    totalBeds: 100
-},{
-    name: 'Royal Free Hospital',
-    latitude: 51.5350857, 
-    longitude: -0.1404352,
-    avaliableBeds: 70,
-    totalBeds: 100
-},{
-    name: 'St Marys Hospital',
-    latitude: 51.5211303, 
-    longitude: -0.1543007,
-    avaliableBeds: 35,
-    totalBeds: 100
-}]
+// const hospitals = [{
+//     name: 'St Thomas Hospital',
+//     latitude: 51.498016, 
+//     longitude: -0.118011,
+//     avaliableBeds: 10,
+//     totalBeds: 100
+// },{
+//     name: 'Homerton Hospital',
+//     latitude: 51.5500, 
+//     longitude: -0.0460,
+//     avaliableBeds: 20,
+//     totalBeds: 100
+// },{
+//     name: 'Heart Hospital',
+//     latitude: 51.5359167, 
+//     longitude: -0.1191931,
+//     avaliableBeds: 40,
+//     totalBeds: 100
+// },{
+//     name: 'London Bridge Hospital',
+//     latitude: 51.498729, 
+//     longitude: -0.1295554,
+//     avaliableBeds: 50,
+//     totalBeds: 100
+// },{
+//     name: 'Royal Free Hospital',
+//     latitude: 51.5350857, 
+//     longitude: -0.1404352,
+//     avaliableBeds: 70,
+//     totalBeds: 100
+// },{
+//     name: 'St Marys Hospital',
+//     latitude: 51.5211303, 
+//     longitude: -0.1543007,
+//     avaliableBeds: 35,
+//     totalBeds: 100
+// }]
 
 const MapWrapper = withScriptjs(
   withGoogleMap(props => (
@@ -109,7 +110,6 @@ const MapWrapper = withScriptjs(
     }}
     >
     { props.hospitals.map(hospital => {
-        console.log('hospital', hospital);
         return (
             <MarkerWithLabel
                 position={{lat: hospital.latitude, lng: hospital.longitude}}
@@ -117,7 +117,7 @@ const MapWrapper = withScriptjs(
                 labelAnchor={new window.google.maps.Point(0, 0)}
                 labelStyle={{backgroundColor: "white", fontSize: "12px", padding: "16px"}}
                 >
-                <div>{hospital.name} - {hospital.avaliableBeds} beds</div>
+                <div>{hospital.name} - {hospital.availableBeds} beds</div>
             </MarkerWithLabel>
             // <HospitalMarker hospital={hospital} />
         )
@@ -145,7 +145,8 @@ const HospitalMarker = (props) => {
     )
 }
 
-export const Maps = () => {
+export const Maps = (props) => {
+    //***** */
     // const [ hospitals, setHospitals ] = useState([]);
     // const [ getHospitals, { data, loading, error  }] = useLazyQuery(gql`
     //     query getHospitals {
@@ -165,36 +166,11 @@ export const Maps = () => {
     // useEffect(() => {
     //     if(data) {setHospitals(data.getHospitals.hospitals)};
     // }, [ data ])
-
-    const { loading, error, data } = useQuery(gql`
-        query getHospitals {
-        getHospitals {
-            hospitals{
-            totalBeds
-            availableBeds
-            unavailableBeds
-            name
-            latitude
-            longitude
-            }
-            }
-        }
-    `);
-    let hospitalsData = [];
-
-    console.log('data:', data);
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
-
-    if (data) {
-        hospitalsData = data.getHospitals.hospitals
-    }
+    //******* */
 
     return (
       <>
-        <Header />
-        {/* Page content */}
+        {/* <Header hospitals={hospitalsData}/> */}
         <Container className="mt--7" fluid>
           <Row>
             <div className="col">
@@ -212,12 +188,12 @@ export const Maps = () => {
                   mapElement={
                     <div style={{ height: `100%`, borderRadius: "inherit" }} />
                   }
-                  hospitals={hospitalsData}
+                  hospitals={props.hospitals}
                 />
               </Card>
             </div>
           </Row>
-          <HospitalTable hospitals={hospitalsData}/>
+          <HospitalTable hospitals={props.hospitals}/>
         </Container>
       </>
     );

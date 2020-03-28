@@ -11696,6 +11696,11 @@ textarea[resize="horizontal"] {
   width: 270px;
   background-color: transparent; }
 
+.progress-row {
+  display: flex;
+  flex-direction: row
+}
+
 .navbar-search-dark .input-group {
   border-color: rgba(255, 255, 255, 0.6); }
 

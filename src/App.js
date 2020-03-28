@@ -1,8 +1,11 @@
 import React from 'react';
-import { Maps } from './components/Maps'
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
+import {
+  Link, Route, Switch
+} from "react-router-dom";
 import './App.css';
+import Dashboard from "./components/Dashboard";
 
 const client = new ApolloClient({
   uri: 'https://bed-tracking.gigalixirapp.com/api',
@@ -12,7 +15,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Maps />
+      <Dashboard />
     </ApolloProvider>
   );
 }

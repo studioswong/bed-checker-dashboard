@@ -26,17 +26,17 @@ const calculateStatus = ((availableBeds, totalBeds) => {
   let dot = 'bg-success'
   // const capacity = Math.round((1-(availableBeds / totalBeds))*100);
   const capacity = calculateCapacity(availableBeds, totalBeds);
-  if (capacity < 5) {
+  if (capacity ==0) {
     status = 'No Capacity'
     dot = 'bg-danger'
-  } else if (capacity >= 5 && capacity < 15) {
+  } else if (capacity >0 && capacity < 15) {
     status = 'very limited capacity'
     dot = 'bg-danger'
   } else if (capacity >= 15 && capacity <30) {
     status = 'limited capacity'
     dot = 'bg-success'
   } else {
-    status = 'moderate capacity'
+    status = 'good capacity'
     dot = 'bg-info'
   }
 
@@ -66,8 +66,8 @@ const HospitalRow = (props => {
         </Media>
       </Media>
     </th>
-    <td>{props.hospital.availableBeds} Beds</td>
     <td>{props.hospital.totalBeds} Beds</td>
+    <td>{props.hospital.availableBeds} Beds</td>
     <td>
       <Badge color="" className="badge-dot mr-4">
         <i className={statusInfo.dot} />
@@ -155,8 +155,8 @@ export default class HospitalTable extends React.Component {
                   <thead className="thead-light">
                     <tr>
                       <th scope="col">Hospital</th>
-                      <th scope="col">Avaliable Beds</th>
                       <th scope="col">Total Beds</th>
+                      <th scope="col">Available Beds</th>
                       <th scope="col">Status</th>
                       <th scope="col">Avaliable Capacity</th>
                       <th scope="col" />
