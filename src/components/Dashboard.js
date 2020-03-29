@@ -19,6 +19,7 @@ function Dashboard() {
             name
             latitude
             longitude
+            id
             }
             }
         }
@@ -38,7 +39,10 @@ function Dashboard() {
         <>
         <Header hospitals={hospitalsData}/>
         <Switch>
-            <Route path="/addWardPage" component={AddWardPage}/>
+            <Route 
+                path="/addWardPage" 
+                render={props => <AddWardPage {...props} hospitals={hospitalsData} />}
+            />
             <Route
                 path='/'
                 render={props => <Maps {...props} hospitals={hospitalsData} />}
