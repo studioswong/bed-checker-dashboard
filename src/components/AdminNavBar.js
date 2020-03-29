@@ -21,14 +21,14 @@ import {
   Navbar,
   Nav,
   Container,
-  Media
+  Media,
+  Row
 } from "reactstrap";
 import AddWardPage from "./AddWardPage"
 
 class AdminNavbar extends React.Component {
   render() {
     return (
-      <><Router>
         <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
           <Container fluid>
             {/* <Link
@@ -46,8 +46,18 @@ class AdminNavbar extends React.Component {
                 component={AddWardPage}
                 onClick={e => e.preventDefault()}
                 >
-                Add COVID ward
+                Add COVID hospital
                 </Button>
+                {/* <Button
+                color="info"
+                href="#pablo"
+                path="/addWardPage"
+                renderAs={Route}
+                component={AddWardPage}
+                onClick={e => e.preventDefault()}
+                >
+                Add hospital manager
+                </Button> */}
             </Form>
             <Nav className="form-inline mr-3 align-items-center d-none d-md-flex" navbar>
               <UncontrolledDropdown nav>
@@ -96,8 +106,6 @@ class AdminNavbar extends React.Component {
             </Nav>
           </Container>
         </Navbar>
-        </Router>
-      </>
     );
   }
 }

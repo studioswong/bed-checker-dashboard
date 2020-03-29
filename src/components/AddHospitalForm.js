@@ -24,10 +24,10 @@ mutation CreateHospitalManager(
         $email: String!, 
         $firstname: String!,
         $lastname: String!,
-        $hospitalId: ID!,
+        $HospitalId: ID!,
         $password: String!,
-        $phoneNumber: String ) {
-    createHospitalManager(input: {email: $email, firstname: $firstname, lastname: $lastname, hospitalId: $hospitalId, password: $password, phoneNumber: $phoneNumber}) {
+        $phoneNumber: String! ) {
+    createHospitalManager(input: {email: $email, firstname: $firstname, lastname: $lastname, hospitalId: $HospitalId, password: $password, phoneNumber: $phoneNumber}) {
         hospitalManager {
             id
         }
@@ -35,7 +35,7 @@ mutation CreateHospitalManager(
 }
 `;
 
-const AddManagerForm = (props) => {
+const AddHospitalForm = (props) => {
     const [ selectedHospital, setSelectedHospital ] = React.useState()
     const [ hospitalId, setHospitalId ] = React.useState()
     const [ firstname, setFirstname ] = React.useState()
@@ -64,23 +64,13 @@ const AddManagerForm = (props) => {
         // }, []);
     }
 
-    useEffect(() => {
-        if(error) setHasError(true)
-        if(data) setSubmitSuccess(true)
-    }, []);
-
-    // if (error) {
-    //     useEffect(() => {
-    //         setHasError(true)
-    //     }, []);
-    // }
+    if (error) {
+        setHasError(true)
+    }
     
-    // if (data) {
-    //     useEffect(() => {
-    //         setHasError(true)
-    //     }, []);
-    //     setSubmitSuccess(true)
-    // }
+    if (data) {
+    setSubmitSuccess(true)
+    }
 
     useEffect(() => {
     if(data) {setSubmitSuccess(true)};
@@ -92,7 +82,7 @@ const AddManagerForm = (props) => {
           <CardHeader className="bg-white border-0">
             <Row className="align-items-center">
               <Col xs="8">
-                <h3 className="mb-0">Add COVID ward manager</h3>
+                <h3 className="mb-0">Add COVID hospital</h3>
               </Col>
             </Row>
           </CardHeader>
@@ -181,40 +171,32 @@ const AddManagerForm = (props) => {
                                   </label>
                                   <Input
                                       className="form-control-alternative"
-                                      id="manager-input-passwordr"
+                                      id="manager-input-password"
                                       placeholder="123123123"
                                       type="text"
                                       onChange={(e) => setPassword(e.target.value)}
                                   />
                               </FormGroup>
                           </Col>
-                          <Col md="12">
+                            <hr className="my-4" />
+                            <h6 className="heading-small text-muted mb-4">
+                                Location information
+                            </h6>
+                            <Col md="12">
                               <FormGroup>
                                   <label
                                   className="form-control-label"
                                   htmlFor="input-address"
                                   >
-                                  Hospital Ward
+                                  Address
                                   </label>
-                                  <InputGroupButtonDropdown 
-                                    addonType="append" 
-                                    isOpen={dropdownOpen} 
-                                    toggle={toggleDropDown} 
-                                    className="form-control-alternative">
-                                      <DropdownToggle caret>
-                                        {selectedHospital || 'Choose Hospital'}
-                                      </DropdownToggle>
-                                      <DropdownMenu>
-                                          {props.hospitals.map(hospital => {
-                                              return (
-                                                <div>
-                                                    <DropdownItem onClick={(e) => handleHospital(e)}>{hospital.name}</DropdownItem>
-                                                    <DropdownItem divider />
-                                                </div>
-                                              )
-                                          })}
-                                      </DropdownMenu>
-                                  </InputGroupButtonDropdown>
+                                  <Input
+                                      className="form-control-alternative"
+                                      id="manager-input-address"
+                                      placeholder="123 London Road, N1 2BR"
+                                      type="text"
+                                      onChange={(e) => setPassword(e.target.value)}
+                                  />
                               </FormGroup>
                           </Col>
                       </Row>
@@ -227,7 +209,7 @@ const AddManagerForm = (props) => {
                         type="submit"
                         onClick={(e) => submitForm(e)}
                         >
-                        Add manager
+                        Add hospital
                     </Button>
               </Form>
           </CardBody>
@@ -236,4 +218,4 @@ const AddManagerForm = (props) => {
     )
 }
 
-export default AddManagerForm;
+export default AddHospitalForm;

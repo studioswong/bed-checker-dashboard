@@ -7,6 +7,7 @@ import {
 import Header from "./Header"
 import { Maps } from './Maps'
 import AddWardPage from './AddWardPage'
+import AddManagerPage from './AddManagerPage'
 
 function Dashboard() {
   const { loading, error, data } = useQuery(gql`
@@ -19,14 +20,17 @@ function Dashboard() {
             name
             latitude
             longitude
+            address
+            hospitalManagers {
+                firstname
+                lastname
+            }
             id
             }
             }
         }
     `);
     let hospitalsData = [];
-
-    console.log('data:', data);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
@@ -40,8 +44,12 @@ function Dashboard() {
         <Header hospitals={hospitalsData}/>
         <Switch>
             <Route 
-                path="/addWardPage" 
+                path="/addWard" 
                 render={props => <AddWardPage {...props} hospitals={hospitalsData} />}
+            />
+            <Route
+                path='/addManager'
+                render={props => <AddManagerPage {...props} hospitals={hospitalsData} />}
             />
             <Route
                 path='/'

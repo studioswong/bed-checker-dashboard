@@ -170,7 +170,6 @@ export const Maps = (props) => {
 
     return (
       <>
-        {/* <Header hospitals={hospitalsData}/> */}
         <Container className="mt--7" fluid>
           <Row>
             <div className="col">
