@@ -82,29 +82,8 @@ const HospitalRow = (props => {
           <i className="fas fa-ellipsis-v" />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-arrow" right>
-          <DropdownItem
-            href="#pablo"
-            onClick={e => e.preventDefault()}
-          >
-            Assign Patient
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={e => e.preventDefault()}
-          >
-            Add Bed
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={e => e.preventDefault()}
-          >
-            Add Facility
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={e => e.preventDefault()}
-          >
-            Add Medical Staff
+          <DropdownItem tag="a" href="/addmanager">
+            Assign Manager
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>

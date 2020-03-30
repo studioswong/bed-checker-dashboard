@@ -7,6 +7,9 @@ import {
     Redirect
   } from "react-router-dom";
 
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from "apollo-boost";
+
 import {
   DropdownMenu,
   DropdownItem,
@@ -30,10 +33,27 @@ import {
 import AddWardPage from "./AddWardPage"
 import AddManagerPage from "./AddManagerPage"
 
-class AdminNavbar extends React.Component {
-  render() {
-    return (
-      <Router>
+const AdminNavbar = (props) => {
+  let currentUser = 'Current User';
+  const { loading, error, data } = useQuery(gql`
+    query currentAdmin {
+      currentAdmin {
+        admin {
+          name
+        }
+      }
+    }`)
+
+  if (data) {
+    console.log('admin data', data)
+    currentUser = data.currentAdmin.admin.name
+  }
+
+  if (error) {
+    console.log('**error in admin nav', error)
+  }
+
+  return(
         <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
           <Container fluid>
             {/* <Link
@@ -43,16 +63,6 @@ class AdminNavbar extends React.Component {
               {this.props.brandText}
             </Link> */}
             <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                {/* <Button
-                color="info"
-                href="#pablo"
-                path="/addWardPage"
-                renderAs={Route}
-                component={AddWardPage}
-                onClick={e => e.preventDefault()}
-                >
-                Add hospital manager
-                </Button> */}
             </Form>
             <Nav className="form-inline mr-3 align-items-center d-none d-md-flex" navbar>
               <UncontrolledDropdown nav>
@@ -66,7 +76,7 @@ class AdminNavbar extends React.Component {
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm font-weight-bold">
-                        Jessica Jones
+                        {currentUser}
                       </span>
                     </Media>
                   </Media>
@@ -97,9 +107,7 @@ class AdminNavbar extends React.Component {
             </Nav>
           </Container>
         </Navbar>
-      </Router>
-    );
-  }
+  )
 }
 
 export default AdminNavbar;

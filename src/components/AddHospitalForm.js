@@ -59,7 +59,7 @@ const AddressInput = (props) => {
           <div className='form-control-alternative'>
             <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Search Places for hospital address and geocode information',
               })}
               className= 'form-control-alternative'
             />

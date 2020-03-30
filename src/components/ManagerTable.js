@@ -53,25 +53,7 @@ const ManagerRow = (props => {
             href="#pablo"
             onClick={e => e.preventDefault()}
           >
-            Assign Patient
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={e => e.preventDefault()}
-          >
-            Add Bed
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={e => e.preventDefault()}
-          >
-            Add Facility
-          </DropdownItem>
-          <DropdownItem
-            href="#pablo"
-            onClick={e => e.preventDefault()}
-          >
-            Add Medical Staff
+            Edit Manager
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>

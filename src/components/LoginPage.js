@@ -9,7 +9,6 @@ import Login from "./Login"
 
 class LoginPage extends React.Component {
   render() {
-      console.log('**reached login')
     return (
       <>
         <div className="main-content">
