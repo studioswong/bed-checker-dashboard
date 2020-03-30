@@ -28,13 +28,8 @@ mutation CreateHospital(
         $address: String!,
         $latitude: Float!,
         $longitude: Float!,
-        $name: String!,
-        $email: String, 
-        $firstname: String,
-        $lastname: String,
-        $password: String,
-        $phoneNumber: String! ) {
-    createHospital(input: {address: $address, latitude: $latitude, longitude: $longitude, name: $name, email: $email, firstname: $firstname, lastname: $lastname, hospitalId: $HospitalId, password: $password, phoneNumber: $phoneNumber}) {
+        $name: String!) {
+    createHospital(input: {address: $address, latitude: $latitude, longitude: $longitude, name: $name}) {
         hospital {
             id
         }
@@ -208,7 +203,7 @@ const AddHospitalForm = (props) => {
                         />
                     </FormGroup>
                 </Col>
-                <hr className="my-4" />
+                {/* <hr className="my-4" />
                   <h6 className="heading-small text-muted mb-4">
                   Manager Contact information (optional)
                   </h6>
@@ -300,7 +295,7 @@ const AddHospitalForm = (props) => {
                               </FormGroup>
                           </Col>
                       </Row>
-                  </div>
+                  </div> */}
                     {hasError && <p>There is an error with adding the manager</p>}
                     {submitSuccess && <p>The form has been submitted</p>}
                     <Button
