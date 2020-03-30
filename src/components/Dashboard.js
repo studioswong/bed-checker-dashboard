@@ -24,6 +24,8 @@ function Dashboard() {
             hospitalManagers {
                 firstname
                 lastname
+                phoneNumber
+                email
                 hospital {
                     name
                 }

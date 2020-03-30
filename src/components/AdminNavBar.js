@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "reactstrap";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    Redirect
   } from "react-router-dom";
 
 import {
@@ -22,13 +22,18 @@ import {
   Nav,
   Container,
   Media,
-  Row
+  Row,
+  NavItem,
+  NavLink,
+  Button
 } from "reactstrap";
 import AddWardPage from "./AddWardPage"
+import AddManagerPage from "./AddManagerPage"
 
 class AdminNavbar extends React.Component {
   render() {
     return (
+      <Router>
         <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
           <Container fluid>
             {/* <Link
@@ -38,16 +43,6 @@ class AdminNavbar extends React.Component {
               {this.props.brandText}
             </Link> */}
             <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                {/* <Button
-                color="info"
-                href="#pablo"
-                path="/addWardPage"
-                renderAs={Route}
-                component={AddWardPage}
-                onClick={e => e.preventDefault()}
-                >
-                Add COVID hospital
-                </Button>
                 {/* <Button
                 color="info"
                 href="#pablo"
@@ -80,13 +75,17 @@ class AdminNavbar extends React.Component {
                   <DropdownItem className="noti-title" header tag="div">
                     <h6 className="text-overflow m-0">Welcome!</h6>
                   </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" >
+                  <DropdownItem tag="a" href="/addWard">
                     <i className="ni ni-single-02" />
-                    <span>Add Hospital</span>
+                    <span>Add hospital</span>
                   </DropdownItem>
-                  <DropdownItem to="/admin/user-profile">
+                  <DropdownItem tag="a" href="/addmanager">
                     <i className="ni ni-settings-gear-65" />
-                    <span>Add Manager</span>
+                    <span>Add manager</span>
+                  </DropdownItem>
+                  <DropdownItem tag="a" href="/">
+                    <i className="ni ni-calendar-grid-58" />
+                    <span>Dashboard</span>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
@@ -98,6 +97,7 @@ class AdminNavbar extends React.Component {
             </Nav>
           </Container>
         </Navbar>
+      </Router>
     );
   }
 }

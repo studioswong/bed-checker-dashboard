@@ -33,7 +33,6 @@ const ManagerRow = (props => {
         </Media>
       </Media>
     </th>
-    <td>{`${props.manager.firstname} ${props.manager.lastname}`} </td>
     <td>{props.manager.hospital.name} </td>
     <td>{props.manager.phoneNumber}</td>
     <td>{props.manager.email}</td>
@@ -100,7 +99,7 @@ export default class ManagerTable extends React.Component {
             <div className="col">
               <Card className="shadow">
                 <CardHeader className="border-0">
-                  <h3 className="mb-0">Hospitals - Greater London Area</h3>
+                  <h3 className="mb-0">Managers - Greater London Area</h3>
                 </CardHeader>
                 <Table className="align-items-center table-flush" responsive>
                   <thead className="thead-light">

@@ -54,7 +54,7 @@ class Header extends React.Component {
     return (
       <>
         <div className="header bg-gradient-info pb-8 pt-5">
-        <AdminNavBar />
+        <AdminNavBar hospitals={this.props.hospitals}/>
           <Container fluid>
             <div className="header-body">
               {/* Card stats */}
