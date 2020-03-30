@@ -34,7 +34,7 @@ const ManagerRow = (props => {
       </Media>
     </th>
     <td>{`${props.manager.firstname} ${props.manager.lastname}`} </td>
-    <td>{props.manager.hospital} </td>
+    <td>{props.manager.hospital.name} </td>
     <td>{props.manager.phoneNumber}</td>
     <td>{props.manager.email}</td>
     <td className="text-right">

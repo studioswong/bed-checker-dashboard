@@ -14,6 +14,7 @@ const client = new ApolloClient({
   fetch,
   request: (operation) => {
     const token = localStorage.getItem('apiToken')
+    //const token = "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAkODg2YWQ3YzAtNTAyNC00Mjk0LTkyOTctZWMxMjVhMWVjZmRlZAAGc2lnbmVkbgYAI6vdKnEB.dztGjBC5j1eBFbojtEkl7sasK9DZdQHZ690zk1KTpVE"
     console.log('token in app', token)
     operation.setContext({
       headers: {
@@ -27,10 +28,11 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Switch>
-            {/* A user can't go to the HomePage if is not authenticated */}
         <PrivateRoute path="/" component={Dashboard} />
-        <Route path="/login" component={LoginPage} />
+        {/* <Route path="/login" component={LoginPage} /> */}
       </Switch>
+      {/* <LoginPage /> */}
+      {/* <Dashboard />  */}
     </ApolloProvider>
   );
 }

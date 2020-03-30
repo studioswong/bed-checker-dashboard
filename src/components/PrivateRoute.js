@@ -6,12 +6,14 @@ import LoginPage from './LoginPage';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+    console.log('token nin private route', localStorage.getItem('apiToken'))
     return(
   <Route {...rest} render={props => (
     localStorage.getItem('apiToken') !== null ? (
         <Component {...props} />
     ) : (
-        <Redirect to='/login'/>
+        // <Redirect to='/login'/>
+        <Route render={() => <LoginPage />} />
     ))} />)
 };
 
