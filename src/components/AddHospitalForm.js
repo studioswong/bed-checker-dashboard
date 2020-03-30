@@ -43,6 +43,9 @@ const AddHospitalForm = (props) => {
     const [ email, setEmail ] = React.useState()
     const [ phoneNumber, setPhoneNumber ] = React.useState()
     const [ password, setPassword ] = React.useState()
+    const [ address, setAddress ] = React.useState()
+    const [ latitude, setLatitude ] = React.useState()
+    const [ longitude, setLongitude ] = React.useState()
 
     const [ hasError, setHasError ] = React.useState(false)
     const [ submitSuccess, setSubmitSuccess ] = React.useState(false)
@@ -196,6 +199,44 @@ const AddHospitalForm = (props) => {
                                       placeholder="123 London Road, N1 2BR"
                                       type="text"
                                       onChange={(e) => setPassword(e.target.value)}
+                                  />
+                              </FormGroup>
+                              <Button
+                                    color="primary"
+                                    href="#pablo"
+                                    type="submit"
+                                    // onClick={(e) => submitForm(e)}
+                                    >
+                                    Locate Geocode
+                                </Button>
+                                <FormGroup>
+                                  <label
+                                  className="form-control-label"
+                                  htmlFor="input-address"
+                                  >
+                                    Latitude
+                                  </label>
+                                  <Input
+                                      className="form-control-alternative"
+                                      id="hospital-latitude"
+                                      placeholder="511.0000"
+                                      type="text"
+                                      onChange={(e) => setLatitude(e.target.value)}
+                                  />
+                              </FormGroup>
+                              <FormGroup>
+                                  <label
+                                  className="form-control-label"
+                                  htmlFor="input-address"
+                                  >
+                                    Longitude
+                                  </label>
+                                  <Input
+                                      className="form-control-alternative"
+                                      id="hospital-longitude"
+                                      placeholder="-122.0000"
+                                      type="text"
+                                      onChange={(e) => setLongitude(e.target.value)}
                                   />
                               </FormGroup>
                           </Col>

@@ -38,7 +38,7 @@ class AdminNavbar extends React.Component {
               {this.props.brandText}
             </Link> */}
             <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                <Button
+                {/* <Button
                 color="info"
                 href="#pablo"
                 path="/addWardPage"
@@ -82,19 +82,11 @@ class AdminNavbar extends React.Component {
                   </DropdownItem>
                   <DropdownItem to="/admin/user-profile" >
                     <i className="ni ni-single-02" />
-                    <span>My profile</span>
+                    <span>Add Hospital</span>
                   </DropdownItem>
                   <DropdownItem to="/admin/user-profile">
                     <i className="ni ni-settings-gear-65" />
-                    <span>Settings</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile">
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>Activity</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile">
-                    <i className="ni ni-support-16" />
-                    <span>Support</span>
+                    <span>Add Manager</span>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>

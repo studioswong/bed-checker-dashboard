@@ -21,54 +21,22 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-const calculateStatus = ((availableBeds, totalBeds) => {
-  let status = 'unknown';
-  let dot = 'bg-success'
-  // const capacity = Math.round((1-(availableBeds / totalBeds))*100);
-  const capacity = calculateCapacity(availableBeds, totalBeds);
-  if (capacity ==0) {
-    status = 'No Capacity'
-    dot = 'bg-danger'
-  } else if (capacity >0 && capacity < 15) {
-    status = 'very limited capacity'
-    dot = 'bg-danger'
-  } else if (capacity >= 15 && capacity <30) {
-    status = 'limited capacity'
-    dot = 'bg-success'
-  } else {
-    status = 'good capacity'
-    dot = 'bg-info'
-  }
-
-  return { status, dot };
-})
-
-const calculateCapacity = ((availableBeds, totalBeds) => {
-  const capacity = Math.round((availableBeds/totalBeds)*100);
-  if(Number.isInteger(capacity)) {
-    return capacity
-  } else {
-    return 0
-  }
-})
-
-const HospitalRow = (props => {
-  const statusInfo = calculateStatus(props.hospital.availableBeds, props.hospital.totalBeds)
-  const capacity = calculateCapacity(props.hospital.availableBeds, props.hospital.totalBeds)
+const ManagerRow = (props => {
   return(
   <tr>
     <th scope="row">
       <Media className="align-items-center">
         <Media>
           <span className="mb-0 text-sm">
-            {props.hospital.name}
+            {`${props.manager.firstname} ${props.manager.lastname}`}
           </span>
         </Media>
       </Media>
     </th>
-    <td>{props.hospital.address}</td>
-    <td>{props.hospital.hospitalManagers.length > 0 ? props.hospital.hospitalManagers[0].firstname + ' ' + props.hospital.hospitalManagers[0].lastname : 'not assigned'} </td>
-    <td>{props.hospital.totalBeds} Beds</td>
+    <td>{`${props.manager.firstname} ${props.manager.lastname}`} </td>
+    <td>{props.manager.hospital} </td>
+    <td>{props.manager.phoneNumber}</td>
+    <td>{props.manager.email}</td>
     <td className="text-right">
       <UncontrolledDropdown>
         <DropdownToggle
@@ -123,7 +91,7 @@ const hospitals = [{
   avaliableBeds: 20
 }]
 
-export default class HospitalFormTable extends React.Component {
+export default class ManagerTable extends React.Component {
   render() {
     console.log('**props', this.props);
     return (
@@ -137,15 +105,15 @@ export default class HospitalFormTable extends React.Component {
                 <Table className="align-items-center table-flush" responsive>
                   <thead className="thead-light">
                     <tr>
-                      <th scope="col">Hospital</th>
-                      <th scope="col">Address</th>
                       <th scope="col">Manager</th>
-                      <th scope="col">Total Beds</th>
+                      <th scope="col">Hospital</th>
+                      <th scope="col">Phone Number</th>
+                      <th scope="col">email</th>
                       <th scope="col" />
                     </tr>
                   </thead>
                   <tbody>
-                    {this.props.hospitals.map(hospital => <HospitalRow hospital={hospital}/>)}
+                    {this.props.managers.map(manager => <ManagerRow manager={manager}/>)}
                   </tbody>
                 </Table>
               </Card>

@@ -24,6 +24,7 @@ function Dashboard() {
             hospitalManagers {
                 firstname
                 lastname
+                hospital
             }
             id
             }
