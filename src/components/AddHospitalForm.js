@@ -91,8 +91,67 @@ const AddHospitalForm = (props) => {
           </CardHeader>
           <CardBody>
               <Form>
+              <hr className="my-4" />
+                <h6 className="heading-small text-muted mb-4">
+                    Location information
+                </h6>
+                <Col md="12">
+                    <FormGroup>
+                        <label
+                        className="form-control-label"
+                        htmlFor="input-address"
+                        >
+                        Address
+                        </label>
+                        <Input
+                            className="form-control-alternative"
+                            id="manager-input-address"
+                            placeholder="123 London Road, N1 2BR"
+                            type="text"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </FormGroup>
+                    <Button
+                        color="primary"
+                        href="#pablo"
+                        type="submit"
+                        // onClick={(e) => submitForm(e)}
+                        >
+                        Locate Geocode
+                    </Button>
+                    <FormGroup>
+                        <label
+                        className="form-control-label"
+                        htmlFor="input-address"
+                        >
+                        Latitude
+                        </label>
+                        <Input
+                            className="form-control-alternative"
+                            id="hospital-latitude"
+                            placeholder="511.0000"
+                            type="text"
+                            onChange={(e) => setLatitude(e.target.value)}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <label
+                        className="form-control-label"
+                        htmlFor="input-address"
+                        >
+                        Longitude
+                        </label>
+                        <Input
+                            className="form-control-alternative"
+                            id="hospital-longitude"
+                            placeholder="-122.0000"
+                            type="text"
+                            onChange={(e) => setLongitude(e.target.value)}
+                        />
+                    </FormGroup>
+                </Col>
                   <h6 className="heading-small text-muted mb-4">
-                  Manager Contact information
+                  Manager Contact information (optional)
                   </h6>
                   <div className="pl-lg-4">
                       <Row>
@@ -178,65 +237,6 @@ const AddHospitalForm = (props) => {
                                       placeholder="123123123"
                                       type="text"
                                       onChange={(e) => setPassword(e.target.value)}
-                                  />
-                              </FormGroup>
-                          </Col>
-                            <hr className="my-4" />
-                            <h6 className="heading-small text-muted mb-4">
-                                Location information
-                            </h6>
-                            <Col md="12">
-                              <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                  Address
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="manager-input-address"
-                                      placeholder="123 London Road, N1 2BR"
-                                      type="text"
-                                      onChange={(e) => setPassword(e.target.value)}
-                                  />
-                              </FormGroup>
-                              <Button
-                                    color="primary"
-                                    href="#pablo"
-                                    type="submit"
-                                    // onClick={(e) => submitForm(e)}
-                                    >
-                                    Locate Geocode
-                                </Button>
-                                <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                    Latitude
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="hospital-latitude"
-                                      placeholder="511.0000"
-                                      type="text"
-                                      onChange={(e) => setLatitude(e.target.value)}
-                                  />
-                              </FormGroup>
-                              <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                    Longitude
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="hospital-longitude"
-                                      placeholder="-122.0000"
-                                      type="text"
-                                      onChange={(e) => setLongitude(e.target.value)}
                                   />
                               </FormGroup>
                           </Col>
