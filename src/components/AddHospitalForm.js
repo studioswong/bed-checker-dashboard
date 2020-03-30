@@ -18,26 +18,86 @@ import {
 
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng,
+  } from 'react-places-autocomplete';
 
-const CREATE_HOSPITAL_MANAGER_MUTATION = gql`
-mutation CreateHospitalManager(
-        $email: String!, 
-        $firstname: String!,
-        $lastname: String!,
-        $HospitalId: ID!,
-        $password: String!,
+const CREATE_HOSPITAL_MUTATION = gql`
+mutation CreateHospital(
+        $address: String!,
+        $latitude: Float!,
+        $longitude: Float!,
+        $name: String!,
+        $email: String, 
+        $firstname: String,
+        $lastname: String,
+        $password: String,
         $phoneNumber: String! ) {
-    createHospitalManager(input: {email: $email, firstname: $firstname, lastname: $lastname, hospitalId: $HospitalId, password: $password, phoneNumber: $phoneNumber}) {
-        hospitalManager {
+    createHospital(input: {address: $address, latitude: $latitude, longitude: $longitude, name: $name, email: $email, firstname: $firstname, lastname: $lastname, hospitalId: $HospitalId, password: $password, phoneNumber: $phoneNumber}) {
+        hospital {
             id
         }
     }
 }
 `;
 
+const AddressInput = (props) => {
+    const handleSelect = address => {
+        props.setAddress(address)
+        geocodeByAddress(address)
+          .then(results => getLatLng(results[0]))
+          .then(latLng => {
+                console.log(latLng)
+                props.setLatitude(latLng.lat)
+                props.setLongitude(latLng.lng)
+          })
+          .catch(error => console.error('Error', error));
+      };
+    return(
+    <PlacesAutocomplete
+        value={props.address}
+        onChange={props.setAddress}
+        onSelect={handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div className='form-control-alternative'>
+            <input
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+              })}
+              className= 'form-control-alternative'
+            />
+            <div className="autocomplete-dropdown-container">
+              {loading && <div>Loading...</div>}
+              {suggestions.map(suggestion => {
+                const className = suggestion.active
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item';
+                // inline style for demonstration purpose
+                const style = suggestion.active
+                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                return (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      className,
+                      style,
+                    })}
+                  >
+                    <span>{suggestion.description}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </PlacesAutocomplete>
+    )
+}
+
 const AddHospitalForm = (props) => {
     const [ selectedHospital, setSelectedHospital ] = React.useState()
-    const [ hospitalId, setHospitalId ] = React.useState()
     const [ firstname, setFirstname ] = React.useState()
     const [ lastname, setLastname ] = React.useState()
     const [ email, setEmail ] = React.useState()
@@ -46,34 +106,23 @@ const AddHospitalForm = (props) => {
     const [ address, setAddress ] = React.useState()
     const [ latitude, setLatitude ] = React.useState()
     const [ longitude, setLongitude ] = React.useState()
+    const [ name, setName ] = React.useState()
 
     const [ hasError, setHasError ] = React.useState(false)
     const [ submitSuccess, setSubmitSuccess ] = React.useState(false)
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
-    const handleHospital = (e) => {
-        const hospitalId = props.hospitals.filter(hospital => hospital.name == e.target.innerText)[0].id
-        setHospitalId(hospitalId)
-        setSelectedHospital(e.target.innerText)
-    }
-    const [ addHospitalManager, { data, error, loading }] = useMutation(CREATE_HOSPITAL_MANAGER_MUTATION);
+    const [ addHospital, { data, error, loading }] = useMutation(CREATE_HOSPITAL_MUTATION);
     const submitForm = e => {
         e.preventDefault();
-        console.log('**submitted')
-        addHospitalManager({ variables: { firstname, lastname, email, phoneNumber, password, hospitalId } });
-        // useEffect(() => {
-        //     addHospitalManager({ variables: { firstname, lastname, email, phoneNumber, password, hospitalId } });
-        // }, []);
+        addHospital({ variables: { name, address, latitude, longitude, firstname, lastname, email, phoneNumber, password } });
     }
 
-    if (error) {
-        setHasError(true)
-    }
-    
-    if (data) {
-    setSubmitSuccess(true)
-    }
+    useEffect(() => {
+        if(error) setHasError(true)
+        if(data) setSubmitSuccess(true)
+    }, []);
 
     useEffect(() => {
     if(data) {setSubmitSuccess(true)};
@@ -91,9 +140,8 @@ const AddHospitalForm = (props) => {
           </CardHeader>
           <CardBody>
               <Form>
-              <hr className="my-4" />
                 <h6 className="heading-small text-muted mb-4">
-                    Location information
+                    Hospital information
                 </h6>
                 <Col md="12">
                     <FormGroup>
@@ -101,24 +149,32 @@ const AddHospitalForm = (props) => {
                         className="form-control-label"
                         htmlFor="input-address"
                         >
-                        Address
+                        Name
                         </label>
                         <Input
+                            className="form-control-alternative"
+                            id="hospital-name"
+                            placeholder="St Mary's Hospital"
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <label
+                        className="form-control-label"
+                        htmlFor="input-address"
+                        >
+                        Address
+                        </label>
+                        <AddressInput address={address} setAddress={setAddress} setLatitude={setLatitude} setLongitude={setLongitude}/>
+                        {/* <Input
                             className="form-control-alternative"
                             id="manager-input-address"
                             placeholder="123 London Road, N1 2BR"
                             type="text"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                            onChange={(e) => setAddress(e.target.value)}
+                        /> */}
                     </FormGroup>
-                    <Button
-                        color="primary"
-                        href="#pablo"
-                        type="submit"
-                        // onClick={(e) => submitForm(e)}
-                        >
-                        Locate Geocode
-                    </Button>
                     <FormGroup>
                         <label
                         className="form-control-label"
@@ -131,6 +187,7 @@ const AddHospitalForm = (props) => {
                             id="hospital-latitude"
                             placeholder="511.0000"
                             type="text"
+                            value={latitude}
                             onChange={(e) => setLatitude(e.target.value)}
                         />
                     </FormGroup>
@@ -146,10 +203,12 @@ const AddHospitalForm = (props) => {
                             id="hospital-longitude"
                             placeholder="-122.0000"
                             type="text"
+                            value={longitude}
                             onChange={(e) => setLongitude(e.target.value)}
                         />
                     </FormGroup>
                 </Col>
+                <hr className="my-4" />
                   <h6 className="heading-small text-muted mb-4">
                   Manager Contact information (optional)
                   </h6>
