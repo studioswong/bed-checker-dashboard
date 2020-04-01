@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
 import {
-  Link, Route, Switch
+    Link, Route, Switch
 } from "react-router-dom";
 import Header from "./Header"
 import { Maps } from './Maps'
@@ -10,7 +10,7 @@ import AddWardPage from './AddWardPage'
 import AddManagerPage from './AddManagerPage'
 
 function Dashboard() {
-  const { loading, error, data } = useQuery(gql`
+    const { loading, error, data } = useQuery(gql`
         query getHospitals {
         getHospitals {
             hospitals{
@@ -46,21 +46,21 @@ function Dashboard() {
 
     return (
         <>
-        <Header hospitals={hospitalsData}/>
-        <Switch>
-            <Route 
-                path="/addWard" 
-                render={props => <AddWardPage {...props} hospitals={hospitalsData} />}
-            />
-            <Route
-                path='/addManager'
-                render={props => <AddManagerPage {...props} hospitals={hospitalsData} />}
-            />
-            <Route
-                path='/'
-                render={props => <Maps {...props} hospitals={hospitalsData} />}
-            />
-        </Switch>
+            <Header hospitals={hospitalsData} />
+            <Switch>
+                <Route
+                    path="/addWard"
+                    render={props => <AddWardPage {...props} hospitals={hospitalsData} />}
+                />
+                <Route
+                    path='/addManager'
+                    render={props => <AddManagerPage {...props} hospitals={hospitalsData} />}
+                />
+                <Route
+                    path='/'
+                    render={props => <Maps {...props} hospitals={hospitalsData} />}
+                />
+            </Switch>
         </>
     );
 }

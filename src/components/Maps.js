@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  GoogleMapLoader,
-  Marker,
-  InfoWindow
+    withScriptjs,
+    withGoogleMap,
+    GoogleMap,
+    GoogleMapLoader,
+    Marker,
+    InfoWindow
 } from "react-google-maps";
 import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
 // import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
@@ -59,83 +59,83 @@ import AddWardPage from "./AddWardPage"
 // }]
 
 const MapWrapper = withScriptjs(
-  withGoogleMap(props => (
-    <GoogleMap
-    defaultZoom={12}
-    defaultCenter={{ lat: 51.509865, lng: -0.118092 }}
-    defaultOptions={{
-        scrollwheel: false,
-        styles: [
-        {
-            featureType: "administrative",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#444444" }]
-        },
-        {
-            featureType: "landscape",
-            elementType: "all",
-            stylers: [{ color: "#f2f2f2" }]
-        },
-        {
-            featureType: "poi",
-            elementType: "all",
-            stylers: [{ visibility: "off" }]
-        },
-        {
-            featureType: "road",
-            elementType: "all",
-            stylers: [{ saturation: -100 }, { lightness: 45 }]
-        },
-        {
-            featureType: "road.highway",
-            elementType: "all",
-            stylers: [{ visibility: "simplified" }]
-        },
-        {
-            featureType: "road.arterial",
-            elementType: "labels.icon",
-            stylers: [{ visibility: "off" }]
-        },
-        {
-            featureType: "transit",
-            elementType: "all",
-            stylers: [{ visibility: "off" }]
-        },
-        {
-            featureType: "water",
-            elementType: "all",
-            stylers: [{ color: "#5e72e4" }, { visibility: "on" }]
-        }
-        ]
-    }}
-    >
-    { props.hospitals.map(hospital => {
-        return (
-            <MarkerWithLabel
-                position={{lat: hospital.latitude, lng: hospital.longitude}}
-                // position={hospital.position}
-                labelAnchor={new window.google.maps.Point(0, 0)}
-                labelStyle={{backgroundColor: "white", fontSize: "12px", padding: "16px"}}
-                >
-                <div>{hospital.name} - {hospital.availableBeds} beds</div>
-            </MarkerWithLabel>
-            // <HospitalMarker hospital={hospital} />
-        )
-    })}
-    </GoogleMap>
-  ))
+    withGoogleMap(props => (
+        <GoogleMap
+            defaultZoom={12}
+            defaultCenter={{ lat: 51.509865, lng: -0.118092 }}
+            defaultOptions={{
+                scrollwheel: false,
+                styles: [
+                    {
+                        featureType: "administrative",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#444444" }]
+                    },
+                    {
+                        featureType: "landscape",
+                        elementType: "all",
+                        stylers: [{ color: "#f2f2f2" }]
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "all",
+                        stylers: [{ visibility: "off" }]
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "all",
+                        stylers: [{ saturation: -100 }, { lightness: 45 }]
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "all",
+                        stylers: [{ visibility: "simplified" }]
+                    },
+                    {
+                        featureType: "road.arterial",
+                        elementType: "labels.icon",
+                        stylers: [{ visibility: "off" }]
+                    },
+                    {
+                        featureType: "transit",
+                        elementType: "all",
+                        stylers: [{ visibility: "off" }]
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "all",
+                        stylers: [{ color: "#5e72e4" }, { visibility: "on" }]
+                    }
+                ]
+            }}
+        >
+            {props.hospitals.map(hospital => {
+                return (
+                    <MarkerWithLabel
+                        position={{ lat: hospital.latitude, lng: hospital.longitude }}
+                        // position={hospital.position}
+                        labelAnchor={new window.google.maps.Point(0, 0)}
+                        labelStyle={{ backgroundColor: "white", fontSize: "12px", padding: "16px" }}
+                    >
+                        <div>{hospital.name} - {hospital.availableBeds} beds</div>
+                    </MarkerWithLabel>
+                    // <HospitalMarker hospital={hospital} />
+                )
+            })}
+        </GoogleMap>
+    ))
 );
 
 const HospitalMarker = (props) => {
-    const [ showInfoWindow, setShowInfoWindow ] = useState(false);
+    const [showInfoWindow, setShowInfoWindow] = useState(false);
     const { latitude, longitude, availableBeds, name } = props.hospital
     useEffect(() => {
         setShowInfoWindow(showInfoWindow);
-      }, [showInfoWindow]);
+    }, [showInfoWindow]);
 
-    return(
-        <Marker position={{lat: latitude, lng: longitude}} 
-        onMouseOver={setShowInfoWindow(true)} onMouseOut={setShowInfoWindow(false)}>
+    return (
+        <Marker position={{ lat: latitude, lng: longitude }}
+            onMouseOver={setShowInfoWindow(true)} onMouseOut={setShowInfoWindow(false)}>
             {showInfoWindow && (
                 <InfoWindow>
                     <h4>{name}</h4>
@@ -169,32 +169,32 @@ export const Maps = (props) => {
     //******* */
 
     return (
-      <>
-        <Container className="mt--7" fluid>
-          <Row>
-            <div className="col">
-              <Card className="shadow border-0">
-                <MapWrapper
-                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdCiFw2sgi_r39_oLVOlv5UlkMMvD_tWc"
-                  loadingElement={<div style={{ height: `100%` }} />}
-                  containerElement={
-                    <div
-                      style={{ height: `600px` }}
-                      className="map-canvas"
-                      id="map-canvas"
-                    />
-                  }
-                  mapElement={
-                    <div style={{ height: `100%`, borderRadius: "inherit" }} />
-                  }
-                  hospitals={props.hospitals}
-                />
-              </Card>
-            </div>
-          </Row>
-          <HospitalTable hospitals={props.hospitals}/>
-        </Container>
-      </>
+        <>
+            <Container className="mt--7" fluid>
+                <Row>
+                    <div className="col">
+                        <Card className="shadow border-0">
+                            <MapWrapper
+                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdCiFw2sgi_r39_oLVOlv5UlkMMvD_tWc"
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={
+                                    <div
+                                        style={{ height: `600px` }}
+                                        className="map-canvas"
+                                        id="map-canvas"
+                                    />
+                                }
+                                mapElement={
+                                    <div style={{ height: `100%`, borderRadius: "inherit" }} />
+                                }
+                                hospitals={props.hospitals}
+                            />
+                        </Card>
+                    </div>
+                </Row>
+                <HospitalTable hospitals={props.hospitals} />
+            </Container>
+        </>
     );
 };
 
