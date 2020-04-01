@@ -12,7 +12,7 @@ class LoginPage extends React.Component {
     return (
       <>
         <div className="main-content">
-          <div className="header background py-7 py-lg-8">
+          <div className="header background pt-4 pb-8">
             <Container>
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
