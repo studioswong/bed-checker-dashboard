@@ -17,7 +17,7 @@ class LoginPage extends React.Component {
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
                   <Col lg="5" md="6">
-                    <img class="app-logo" src={logo} alt="bed checker" />
+                    <img src={logo} alt="bed checker" />
                     <h1 className="text-white">Bed Checker</h1>
                     <p className="text-lead text-light">
                       Save time. save lives.

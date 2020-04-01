@@ -61,7 +61,7 @@ class Header extends React.Component {
     const capacity = calculateCapacity(availableBed, totalBed);
     return (
       <>
-        <div className="header background pb-8 pt-5">
+        <div className="header background pb-8">
           <AdminNavBar hospitals={this.props.hospitals} />
           <Container fluid>
             <div className="header-body">
