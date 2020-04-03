@@ -15,7 +15,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { useLogin } from '../app-hooks/useLogin';
+import { useLogin } from "../app-hooks/useLogin";
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState();
@@ -27,15 +27,16 @@ const Login = ({ history }) => {
       <Col lg="5" md="7">
         <Card className="bg-secondary shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">
-            <div className="text-center text-muted mb-4">
-              <small>sign in with credentials</small>
+            <div className="text-center text-gray mb-4">
+              Sign in to access real time availability of beds
             </div>
             <Form
               role="form"
-              onSubmit={(e) => {
+              onSubmit={e => {
                 e.preventDefault();
                 return login({ variables: { email, password } });
-              }}>
+              }}
+            >
               <FormGroup className="mb-3">
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -47,7 +48,8 @@ const Login = ({ history }) => {
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
-                    onChange={(e) => setEmail(e.target.value)} />
+                    onChange={e => setEmail(e.target.value)}
+                  />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -61,13 +63,14 @@ const Login = ({ history }) => {
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
-                    onChange={(e) => setPassword(e.target.value)} />
+                    onChange={e => setPassword(e.target.value)}
+                  />
                 </InputGroup>
               </FormGroup>
               <div className="text-center">
                 <Button className="my-4" color="primary" type="submit">
                   Sign in
-                  </Button>
+                </Button>
               </div>
             </Form>
           </CardBody>
@@ -75,6 +78,6 @@ const Login = ({ history }) => {
       </Col>
     </>
   );
-}
+};
 
-export default Login
+export default Login;

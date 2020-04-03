@@ -1,50 +1,58 @@
 import React from "react";
 
 // reactstrap components
-import { Card, CardBody, CardTitle, Container, Row, Col, Progress, Button } from "reactstrap";
-import AdminNavBar from "./AdminNavBar"
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  Container,
+  Row,
+  Col,
+  Progress,
+  Button
+} from "reactstrap";
+import AdminNavBar from "./AdminNavBar";
 
-const calculateBeds = (hospitals) => {
+const calculateBeds = hospitals => {
   let totalBed = 0;
   let availableBed = 0;
   hospitals.map(hospital => {
-    totalBed += hospital.totalBeds
-    availableBed += hospital.availableBeds
+    totalBed += hospital.totalBeds;
+    availableBed += hospital.availableBeds;
   });
   return { totalBed, availableBed };
-}
+};
 
-const calculateStatus = ((availableBeds, totalBeds) => {
-  let status = 'unknown';
-  let dot = 'bg-success'
+const calculateStatus = (availableBeds, totalBeds) => {
+  let status = "unknown";
+  let dot = "bg-success";
   // const capacity = Math.round((1-(availableBeds / totalBeds))*100);
   const capacity = calculateCapacity(availableBeds, totalBeds);
   if (capacity == 0) {
-    status = 'No Capacity'
-    dot = 'bg-danger'
+    status = "No Capacity";
+    dot = "bg-danger";
   } else if (capacity > 0 && capacity < 15) {
-    status = 'very limited capacity'
-    dot = 'bg-danger'
+    status = "very limited capacity";
+    dot = "bg-danger";
   } else if (capacity >= 15 && capacity < 30) {
-    status = 'limited capacity'
-    dot = 'bg-success'
+    status = "limited capacity";
+    dot = "bg-success";
   } else {
-    status = 'good capacity'
-    dot = 'bg-info'
+    status = "good capacity";
+    dot = "bg-info";
   }
 
   return { status, dot };
-})
+};
 
-const calculateCapacity = ((availableBeds, totalBeds) => {
+const calculateCapacity = (availableBeds, totalBeds) => {
   const capacity = Math.round((availableBeds / totalBeds) * 100);
   if (Number.isInteger(capacity)) {
-    return capacity
+    return capacity;
   } else {
-    return 0
+    return 0;
   }
-})
-
+};
 
 class Header extends React.Component {
   render() {
@@ -53,7 +61,7 @@ class Header extends React.Component {
     const capacity = calculateCapacity(availableBed, totalBed);
     return (
       <>
-        <div className="header bg-gradient-info pb-8 pt-5">
+        <div className="header background pb-8">
           <AdminNavBar hospitals={this.props.hospitals} />
           <Container fluid>
             <div className="header-body">
@@ -76,7 +84,7 @@ class Header extends React.Component {
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
-                            <i className="fas fa-chart-bar" />
+                            <i className="fas fa-bed" />
                           </div>
                         </Col>
                       </Row>
@@ -106,7 +114,7 @@ class Header extends React.Component {
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
-                            <i className="fas fa-chart-pie" />
+                            <i className="fas fa-bed" />
                           </div>
                         </Col>
                       </Row>
@@ -131,7 +139,9 @@ class Header extends React.Component {
                             Overall Status
                           </CardTitle>
                           <i className={totalStatus.dot} />
-                          <span className="h2 font-weight-bold mb-0">{totalStatus.status}</span>
+                          <span className="h2 font-weight-bold mb-0">
+                            {totalStatus.status}
+                          </span>
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -158,10 +168,10 @@ class Header extends React.Component {
                             className="text-uppercase text-muted mb-0"
                           >
                             Total Available Capacity
-                            </CardTitle>
+                          </CardTitle>
                           <span className="h2 font-weight-bold mb-0">
                             {capacity}%
-                            </span>
+                          </span>
                           <Progress
                             max="100"
                             value={capacity}

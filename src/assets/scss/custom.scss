@@ -1,0 +1,33 @@
+.background {
+  background-color: #005eb8;
+}
+
+.text-gray {
+  color: #333 !important;
+}
+
+.nav-logo {
+  display: flex;
+  height: 100px;
+
+  .logo {
+    margin-right: 1rem;
+
+    img {
+      height: 100px;
+    }
+  }
+
+  .title-description {
+    color: #fff;
+    align-self: center;
+
+    .title {
+      font-size: 24px;
+    }
+
+    .description {
+      font-size: 16px;
+    }
+  }
+}
