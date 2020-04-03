@@ -7,8 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/scss/argon-dashboard-react.scss";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById("root")
-);
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+    , document.getElementById('root'));

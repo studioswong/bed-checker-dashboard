@@ -21,10 +21,10 @@ export class Map extends Component {
   }
 
   render() {
-    const {lat, lng} = this.state;
+    const { lat, lng } = this.state;
 
-    return(
-      <div style={{width: `750px`, height: `750px`}}>
+    return (
+      <div style={{ width: `750px`, height: `750px` }}>
         <AirbnbMap
           center={{
             lat: lat,

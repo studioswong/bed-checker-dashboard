@@ -3,9 +3,9 @@ import { Marker } from 'react-google-maps'
 
 export class PlaceMarker extends Component {
   render() {
-    const {lat, lng} = this.props
+    const { lat, lng } = this.props
 
-    return(
+    return (
       <Marker
         position={{
           lat: parseFloat(lat),
