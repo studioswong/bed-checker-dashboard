@@ -124,7 +124,7 @@ export default class HospitalFormTable extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.props.hospitals.map(hospital => <HospitalRow hospital={hospital} />)}
+                                    {this.props.hospitals.map(hospital => <HospitalRow hospital={hospital} key={`row${hospital.id}`} />)}
                                 </tbody>
                             </Table>
                         </Card>

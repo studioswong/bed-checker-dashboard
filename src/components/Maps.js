@@ -19,6 +19,7 @@ import { Card, Container, Row } from "reactstrap";
 import Header from "./Header";
 import HospitalTable from "./HospitalTable";
 import AddWardPage from "./AddWardPage";
+import HospitalMarker from "./HospitalMarker";
 
 // const hospitals = [{
 //     name: 'St Thomas Hospital',
@@ -111,49 +112,49 @@ const MapWrapper = withScriptjs(
         >
             {props.hospitals.map(hospital => {
                 return (
-                    <MarkerWithLabel
-                        position={{ lat: hospital.latitude, lng: hospital.longitude }}
-                        // position={hospital.position}
-                        labelAnchor={new window.google.maps.Point(0, 0)}
-                        labelStyle={{
-                            backgroundColor: "white",
-                            fontSize: "12px",
-                            padding: "16px"
-                        }}
-                    >
-                        <div>
-                            {hospital.name} - {hospital.availableBeds} beds
-            </div>
-                    </MarkerWithLabel>
-                    // <HospitalMarker hospital={hospital} />
+                    // <MarkerWithLabel
+                    //     position={{ lat: hospital.latitude, lng: hospital.longitude }}
+                    //     // position={hospital.position}
+                    //     labelAnchor={new window.google.maps.Point(0, 0)}
+                    //     labelStyle={{
+                    //         backgroundColor: "white",
+                    //         fontSize: "12px",
+                    //         padding: "16px"
+                    //     }}
+                    // >
+                    //     <div>
+                    //         {hospital.name} - {hospital.availableBeds} beds
+                    //     </div>
+                    // </MarkerWithLabel>
+                    <HospitalMarker hospital={hospital} key={hospital.id} />
                 );
             })}
         </GoogleMap>
     ))
 );
 
-const HospitalMarker = props => {
-    const [showInfoWindow, setShowInfoWindow] = useState(false);
-    const { latitude, longitude, availableBeds, name } = props.hospital;
-    useEffect(() => {
-        setShowInfoWindow(showInfoWindow);
-    }, [showInfoWindow]);
+// const HospitalMarker = props => {
+//     const [showInfoWindow, setShowInfoWindow] = useState(false);
+//     const { latitude, longitude, availableBeds, name } = props.hospital;
+//     useEffect(() => {
+//         setShowInfoWindow(showInfoWindow);
+//     }, [showInfoWindow]);
 
-    return (
-        <Marker
-            position={{ lat: latitude, lng: longitude }}
-            onMouseOver={setShowInfoWindow(true)}
-            onMouseOut={setShowInfoWindow(false)}
-        >
-            {showInfoWindow && (
-                <InfoWindow>
-                    <h4>{name}</h4>
-                    <h4>{availableBeds}</h4>
-                </InfoWindow>
-            )}
-        </Marker>
-    );
-};
+//     return (
+//         <Marker
+//             position={{ lat: latitude, lng: longitude }}
+//             onMouseOver={setShowInfoWindow(true)}
+//             onMouseOut={setShowInfoWindow(false)}
+//         >
+//             {showInfoWindow && (
+//                 <InfoWindow>
+//                     <h4>{name}</h4>
+//                     <h4>{availableBeds}</h4>
+//                 </InfoWindow>
+//             )}
+//         </Marker>
+//     );
+// };
 
 export const Maps = props => {
     //***** */

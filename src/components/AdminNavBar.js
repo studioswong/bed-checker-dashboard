@@ -47,7 +47,6 @@ const AdminNavbar = props => {
   `);
 
   if (data) {
-    console.log("admin data", data);
     currentUser = data.currentAdmin.admin.name;
   }
 
