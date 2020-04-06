@@ -12,7 +12,6 @@ const HospitalMarker = props => {
             }}
             onMouseOver={() => setOpenWindow(true)}
             onMouseOut={() => setOpenWindow(false)}
-            markerWithLabel={window.MarkerWithLabel}
         >
             {openWindow && (
                 <InfoWindow>

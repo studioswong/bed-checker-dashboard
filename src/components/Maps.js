@@ -133,29 +133,6 @@ const MapWrapper = withScriptjs(
     ))
 );
 
-// const HospitalMarker = props => {
-//     const [showInfoWindow, setShowInfoWindow] = useState(false);
-//     const { latitude, longitude, availableBeds, name } = props.hospital;
-//     useEffect(() => {
-//         setShowInfoWindow(showInfoWindow);
-//     }, [showInfoWindow]);
-
-//     return (
-//         <Marker
-//             position={{ lat: latitude, lng: longitude }}
-//             onMouseOver={setShowInfoWindow(true)}
-//             onMouseOut={setShowInfoWindow(false)}
-//         >
-//             {showInfoWindow && (
-//                 <InfoWindow>
-//                     <h4>{name}</h4>
-//                     <h4>{availableBeds}</h4>
-//                 </InfoWindow>
-//             )}
-//         </Marker>
-//     );
-// };
-
 export const Maps = props => {
     //***** */
     // const [ hospitals, setHospitals ] = useState([]);
