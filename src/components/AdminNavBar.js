@@ -56,24 +56,18 @@ const AdminNavbar = props => {
 
   return (
     <>
-      <div className="nav-logo">
-        <div className="logo">
-          <img src={logo} alt="bed checker" />
-        </div>
-        <div className="title-description">
-          <div className="title">Bed Checker</div>
-          <div className="description">Save time. Save lives.</div>
-        </div>
-      </div>
 
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container fluid>
-          {/* <Link
-              className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-              to="/"
-            >
-              {this.props.brandText}
-            </Link> */}
+          <div className="nav-logo">
+            <div className="logo">
+              <img src={logo} alt="bed checker" />
+            </div>
+            <div className="title-description">
+              <div className="title">Bed Checker</div>
+              <div className="description">Save time. Save lives.</div>
+            </div>
+          </div>
           <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"></Form>
           <Nav
             className="form-inline mr-3 align-items-center d-none d-md-flex"
