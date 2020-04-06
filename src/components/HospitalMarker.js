@@ -18,7 +18,6 @@ const HospitalMarker = props => {
                     <div>
                         <h3>{name}</h3>
                         <p>{availableBeds} available Beds</p>
-                        {/* <span>${price}</span> */}
                     </div>
                 </InfoWindow>
             )}
