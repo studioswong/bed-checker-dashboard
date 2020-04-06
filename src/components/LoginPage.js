@@ -21,7 +21,7 @@ class LoginPage extends React.Component {
                                         <h1 className="text-white">Bed Checker</h1>
                                         <p className="text-lead text-light">
                                             Save time. save lives.
-                    </p>
+                                        </p>
                                     </Col>
                                 </Row>
                             </div>
