@@ -88,12 +88,12 @@ class Header extends React.Component {
                           </div>
                         </Col>
                       </Row>
-                      <p className="mt-3 mb-0 text-muted text-sm">
+                      {/* <p className="mt-3 mb-0 text-muted text-sm">
                         <span className="text-success mr-2">
                           <i className="fa fa-arrow-up" /> 3.48%
                         </span>{" "}
                         <span className="text-nowrap">Since last hour</span>
-                      </p>
+                      </p> */}
                     </CardBody>
                   </Card>
                 </Col>
@@ -118,12 +118,12 @@ class Header extends React.Component {
                           </div>
                         </Col>
                       </Row>
-                      <p className="mt-3 mb-0 text-muted text-sm">
+                      {/* <p className="mt-3 mb-0 text-muted text-sm">
                         <span className="text-danger mr-2">
                           <i className="fas fa-arrow-down" /> 3.48%
                         </span>{" "}
                         <span className="text-nowrap">Since last hour</span>
-                      </p>
+                      </p> */}
                     </CardBody>
                   </Card>
                 </Col>
@@ -149,12 +149,12 @@ class Header extends React.Component {
                           </div>
                         </Col>
                       </Row>
-                      <p className="mt-3 mb-0 text-muted text-sm">
+                      {/* <p className="mt-3 mb-0 text-muted text-sm">
                         <span className="text-warning mr-2">
                           <i className="fas fa-arrow-down" /> 1.10%
                         </span>{" "}
                         <span className="text-nowrap">Since yesterday</span>
-                      </p>
+                      </p> */}
                     </CardBody>
                   </Card>
                 </Col>
@@ -172,11 +172,11 @@ class Header extends React.Component {
                           <span className="h2 font-weight-bold mb-0">
                             {capacity}%
                           </span>
-                          <Progress
+                          {/* <Progress
                             max="100"
                             value={capacity}
                             barClassName={totalStatus.dot}
-                          />
+                          /> */}
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -184,12 +184,12 @@ class Header extends React.Component {
                           </div>
                         </Col>
                       </Row>
-                      <p className="mt-3 mb-0 text-muted text-sm">
+                      {/* <p className="mt-3 mb-0 text-muted text-sm">
                         <span className="text-success mr-2">
                           <i className="fas fa-arrow-up" /> 12%
                         </span>{" "}
                         <span className="text-nowrap">Since last month</span>
-                      </p>
+                      </p> */}
                     </CardBody>
                   </Card>
                 </Col>

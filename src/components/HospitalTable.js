@@ -99,10 +99,7 @@ const HospitalRow = (props => {
             <i className="fas fa-ellipsis-v" />
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-arrow" right>
-            <DropdownItem
-              href="#pablo"
-              onClick={e => e.preventDefault()}
-            >
+            <DropdownItem tag="a" href="/addmanager">
               Add Manager
           </DropdownItem>
           </DropdownMenu>
@@ -124,7 +121,6 @@ const hospitals = [{
 
 export default class HospitalTable extends React.Component {
   render() {
-    console.log('**props', this.props);
     return (
       <>
         <Row>

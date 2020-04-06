@@ -36,7 +36,7 @@ const ManagerRow = (props => {
             <td>{props.manager.hospital.name} </td>
             <td>{props.manager.phoneNumber}</td>
             <td>{props.manager.email}</td>
-            <td className="text-right">
+            {/* <td className="text-right">
                 <UncontrolledDropdown>
                     <DropdownToggle
                         className="btn-icon-only text-light"
@@ -54,10 +54,10 @@ const ManagerRow = (props => {
                             onClick={e => e.preventDefault()}
                         >
                             Edit Manager
-          </DropdownItem>
+                    </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
-            </td>
+            </td> */}
         </tr>
     )
 });
