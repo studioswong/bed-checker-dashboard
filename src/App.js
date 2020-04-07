@@ -30,11 +30,7 @@ function App() {
       <Switch>
         <PrivateRoute path="/" component={Dashboard} />
         <Route path="/login" component={LoginPage} />
-        {/* <Route path="/addhospital" component={AddWard} />
-        <Route path="/addmanager" component={AddManager} /> */}
       </Switch>
-      {/* <LoginPage /> */}
-      {/* <Dashboard />  */}
     </ApolloProvider>
   );
 }
