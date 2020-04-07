@@ -12,7 +12,7 @@ import AddManager from "./components/AddManagerPage";
 import PrivateRoute from "./components/PrivateRoute";
 
 const client = new ApolloClient({
-  uri: 'https://bed-tracking.gigalixirapp.com/api',
+  uri: 'https://bed-checker.gigalixirapp.com/api',
   fetch,
   request: (operation) => {
     const token = localStorage.getItem('apiToken')
