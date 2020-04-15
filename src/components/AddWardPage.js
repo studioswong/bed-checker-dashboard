@@ -23,7 +23,7 @@ import HospitalFormTable from "./HospitalFormTable"
 
 const AddWardPage = (props) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [selectedHospital, setSelectedHospital] = React.useState()
+    const [selectedHospitasel, setSelectedHospital] = React.useState()
     const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
 
     return (

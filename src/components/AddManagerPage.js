@@ -13,19 +13,15 @@ import {
     Row,
     Col
 } from "reactstrap";
-// core components
+
 import AddManagerForm from "./AddManagerForm"
 import ManagerTable from "./ManagerTable"
 
 const AddManagerPage = (props) => {
-    // compile list of managers
     let managerList = [];
     props.hospitals.map(hospital => {
-        console.log('Hospital', hospital.hospitalManagers)
         managerList = managerList.concat(hospital.hospitalManagers)
     })
-
-    console.log('managerList', managerList)
 
     return (
         <Container className="mt--7" fluid>
