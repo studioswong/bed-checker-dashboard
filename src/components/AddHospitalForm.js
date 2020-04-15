@@ -68,9 +68,9 @@ const AddressInput = props => {
                     <input
                         {...getInputProps({
                             placeholder:
-                                "Search Places for hospital address and geocode information"
+                                "Search for hospital address and geocode information"
                         })}
-                        className="form-control-alternative"
+                        className="form-control"
                     />
                     <div className="autocomplete-dropdown-container">
                         {loading && <div>Loading...</div>}
@@ -162,12 +162,12 @@ const AddHospitalForm = props => {
                     <Form>
                         <h6 className="heading-small text-muted mb-4">
                             Hospital information
-            </h6>
+                        </h6>
                         <Col md="12">
                             <FormGroup>
                                 <label className="form-control-label" htmlFor="input-address">
                                     Name
-                </label>
+                                </label>
                                 <Input
                                     className="form-control-alternative"
                                     id="hospital-name"
@@ -179,7 +179,7 @@ const AddHospitalForm = props => {
                             <FormGroup>
                                 <label className="form-control-label" htmlFor="input-address">
                                     Address
-                </label>
+                                </label>
                                 <AddressInput
                                     address={address}
                                     setAddress={setAddress}
@@ -197,7 +197,7 @@ const AddHospitalForm = props => {
                             <FormGroup>
                                 <label className="form-control-label" htmlFor="input-address">
                                     Latitude
-                </label>
+                                </label>
                                 <Input
                                     className="form-control-alternative"
                                     id="hospital-latitude"
@@ -210,7 +210,7 @@ const AddHospitalForm = props => {
                             <FormGroup>
                                 <label className="form-control-label" htmlFor="input-address">
                                     Longitude
-                </label>
+                                </label>
                                 <Input
                                     className="form-control-alternative"
                                     id="hospital-longitude"
@@ -221,99 +221,6 @@ const AddHospitalForm = props => {
                                 />
                             </FormGroup>
                         </Col>
-                        {/* <hr className="my-4" />
-                  <h6 className="heading-small text-muted mb-4">
-                  Manager Contact information (optional)
-                  </h6>
-                  <div className="pl-lg-4">
-                      <Row>
-                          <Col md="12">
-                              <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                  First name
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="manager-input-first-name"
-                                      placeholder="John"
-                                      type="text"
-                                      onChange={(e) => setFirstname(e.target.value)}
-                                  />
-                              </FormGroup>
-                          </Col>
-                          <Col md="12">
-                              <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                  Last name
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="manager-input-last-name"
-                                      placeholder="Doe"
-                                      type="text"
-                                      onChange={(e) => setLastname(e.target.value)}
-                                  />
-                              </FormGroup>
-                          </Col>
-                          <Col md="12">
-                              <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                  Email address
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="manager-input-email"
-                                      placeholder="johndoe@hospital.com"
-                                      type="text"
-                                      onChange={(e) => setEmail(e.target.value)}
-                                  />
-                              </FormGroup>
-                          </Col>
-                          <Col md="12">
-                              <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                  Phone number
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="manager-input-phone-number"
-                                      placeholder="07998889078"
-                                      type="text"
-                                      onChange={(e) => setPhoneNumber(e.target.value)}
-                                  />
-                              </FormGroup>
-                          </Col>
-                          <Col md="12">
-                              <FormGroup>
-                                  <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                  >
-                                  Password
-                                  </label>
-                                  <Input
-                                      className="form-control-alternative"
-                                      id="manager-input-password"
-                                      placeholder="123123123"
-                                      type="text"
-                                      onChange={(e) => setPassword(e.target.value)}
-                                  />
-                              </FormGroup>
-                          </Col>
-                      </Row>
-                  </div> */}
                         {hasError && <p>There is an error with adding the manager</p>}
                         {submitSuccess && <p>The form has been submitted</p>}
                         <Button
