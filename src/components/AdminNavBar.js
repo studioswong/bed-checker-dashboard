@@ -54,6 +54,11 @@ const AdminNavbar = props => {
     console.log("**error in admin nav", error);
   }
 
+  const logout = () => {
+    localStorage.clear('apiToken');
+    window.location.href = '/';
+  }
+
   return (
     <>
 
@@ -103,7 +108,7 @@ const AdminNavbar = props => {
                   <span>Dashboard</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                <DropdownItem href="#pablo" onClick={logout}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>
